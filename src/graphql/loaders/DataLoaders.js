@@ -16,13 +16,22 @@ export default class DataLoaders {
 
   static speakersById(reqContext: Object): DataLoader {
     return new DataLoader(async speakerIds => {
-      return await Models.SpeakerModel.getAll(...speakerIds);
+      return await _getAllById(Models.SpeakerModel, speakerIds);
     });
   }
 
   static talksById(reqContext: Object): DataLoader {
     return new DataLoader(async talkIds => {
-      return await Models.TalkModel.getAll(...talkIds);
+      return await _getAllById(Models.TalkModel, talkIds);
     });
   }
+}
+
+async function _getAllById(ThinkyModel, ids) {
+  const results = await ThinkyModel.getAll(...ids);
+  const resultsById = results.reduce((byId, result) => {
+    byId[result.id] = result;
+    return byId;
+  }, {});
+  return ids.map(id => resultsById[id]);
 }
