@@ -10,6 +10,7 @@ import {
 
 import { globalIdField } from 'graphql-relay';
 
+import createConnection from 'createConnection';
 import * as EventResolvers from 'EventResolvers';
 import EventType from 'EventType';
 import { nodeInterface } from 'RelayNode';
@@ -49,11 +50,10 @@ export const ViewerType = new GraphQLObjectType({
       resolve: ScheduleResolvers.schedulesResolver,
     },
 
-    allSpeakers: { //TODO @skevy Make this a connection
-      type: new GraphQLList(SpeakerType),
-      description: `A connection providing a list of all the conference speakers.`,
-      resolve: SpeakerResolvers.allSpeakersResolver,
-    },
+    allSpeakers: createConnection({
+      type: SpeakerType,
+      resolver: SpeakerResolvers.allSpeakersResolver,
+    }),
 
     speakersByName: { //TODO @skevy Make this a connection
       type: new GraphQLList(SpeakerType),

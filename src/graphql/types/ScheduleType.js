@@ -3,13 +3,13 @@
  */
 
 import {
-  GraphQLList,
   GraphQLObjectType,
 } from 'graphql';
 
 import CustomGraphQLDateType from 'graphql-custom-datetype';
 import { globalIdField } from 'graphql-relay';
 
+import createConnection from 'createConnection';
 import ScheduleSlotType from 'ScheduleSlotType';
 import * as ScheduleResolvers from 'ScheduleResolvers';
 import { nodeInterface } from 'RelayNode';
@@ -21,10 +21,10 @@ const ScheduleType = new GraphQLObjectType({
   fields: () => ({
     id: globalIdField('Schedule'),
     date: { type: CustomGraphQLDateType },
-    slots: {
-      type: new GraphQLList(ScheduleSlotType),
-      resolve: ScheduleResolvers.scheduleSlotResolver,
-    },
+    slots: createConnection({
+      type: ScheduleSlotType,
+      resolver: ScheduleResolvers.scheduleSlotResolver,
+    }),
   }),
 
   interfaces: () => [nodeInterface],

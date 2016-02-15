@@ -8,8 +8,6 @@ import {
 } from 'graphql';
 
 import ActivitySlotType from 'ActivitySlotType';
-import { nodeInterface } from 'RelayNode';
-import RelayRegistry from 'RelayRegistry';
 import LightningTalksSlotType from 'LightningTalksSlotType';
 import TalkSlotType from 'TalkSlotType';
 
@@ -27,8 +25,6 @@ const ScheduleSlotType = new GraphQLUnionType({
         return ActivitySlotType;
     }
   },
-
-  interface: () => [nodeInterface],
 });
 
-export default RelayRegistry.registerNodeType(ScheduleSlotType);
+export default ScheduleSlotType;

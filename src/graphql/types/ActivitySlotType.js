@@ -18,7 +18,7 @@ const ActivitySlotType = new GraphQLObjectType({
   name: 'ActivitySlot',
   description: 'An activity (break/lunch/etc.)',
 
-  isTypeOf: () => true,
+  isTypeOf: s => s.type === 'activity',
 
   fields: () => ({
     id: globalIdField('ActivitySlot'),

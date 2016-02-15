@@ -16,7 +16,7 @@ import FullLengthTalkType from 'FullLengthTalkType';
 const TalkSlotType = new GraphQLObjectType({
   name: 'TalkSlot',
 
-  isTypeOf: () => true,
+  isTypeOf: s => s.type === 'full-length-talk',
 
   fields: () => ({
     id: globalIdField('TalkSlot'),
@@ -27,7 +27,7 @@ const TalkSlotType = new GraphQLObjectType({
     ...ScheduleSlotInterfaceFields,
   }),
 
-  interface: () => [ScheduleSlotInterface, nodeInterface],
+  interfaces: () => [ScheduleSlotInterface, nodeInterface],
 });
 
 export default RelayRegistry.registerNodeType(TalkSlotType);

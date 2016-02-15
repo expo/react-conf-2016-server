@@ -19,7 +19,7 @@ const LightningTalkType = new GraphQLObjectType({
   name: 'LightningTalk',
   description: 'A lightning talk',
 
-  isTypeOf: () =>  true,
+  isTypeOf: t => t.type === 'lightning-talk',
 
   fields: () => ({
     id: globalIdField('LightningTalk'),

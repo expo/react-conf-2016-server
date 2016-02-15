@@ -19,7 +19,7 @@ const FullLengthTalkType = new GraphQLObjectType({
   name: 'FullLengthTalk',
   description: 'A talk',
 
-  isTypeOf: () =>  true,
+  isTypeOf: t => t.type === 'full-length-talk',
 
   fields: () => ({
     id: globalIdField('FullLengthTalk'),

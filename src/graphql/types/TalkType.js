@@ -9,8 +9,6 @@ import {
 
 import FullLengthTalkType from 'FullLengthTalkType';
 import LightningTalkType from 'LightningTalkType';
-import { nodeInterface } from 'RelayNode';
-import RelayRegistry from 'RelayRegistry';
 
 const TalkType = new GraphQLUnionType({
   name: 'Talk',
@@ -25,8 +23,6 @@ const TalkType = new GraphQLUnionType({
         return LightningTalkType;
     }
   },
-
-  interface: () => [nodeInterface],
 });
 
-export default RelayRegistry.registerNodeType(TalkType);
+export default TalkType;

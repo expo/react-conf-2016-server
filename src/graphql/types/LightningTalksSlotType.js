@@ -17,7 +17,7 @@ import LightningTalkType from 'LightningTalkType';
 const LightningTalksSlotType = new GraphQLObjectType({
   name: 'LightningTalksSlot',
 
-  isTypeOf: () => true,
+  isTypeOf: s => s.type === 'lightning-talks',
 
   fields: () => ({
     id: globalIdField('LightningTalksSlot'),
@@ -27,7 +27,7 @@ const LightningTalksSlotType = new GraphQLObjectType({
     ...ScheduleSlotInterfaceFields,
   }),
 
-  interface: () => [ScheduleSlotInterface, nodeInterface],
+  interfaces: () => [ScheduleSlotInterface, nodeInterface],
 });
 
 export default RelayRegistry.registerNodeType(LightningTalksSlotType);
