@@ -4,6 +4,8 @@
  */
 
 import type { GraphQLResolveInfo } from 'graphql';
+
+import createNodeResolverWithLoader from 'createNodeResolverWithLoader';
 import { r } from 'DB';
 import SpeakerModel from 'SpeakerModel';
 import TalkModel from 'TalkModel';
@@ -40,3 +42,5 @@ export const talksForSpeakerResolver = async (
   const talks = await loaders.talksById.loadMany(talkIds);
   return talks;
 };
+
+export const speakerNodeResolver = createNodeResolverWithLoader('speakerById');

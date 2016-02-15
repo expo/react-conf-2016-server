@@ -20,12 +20,12 @@ type NodeObject = {
 
 const { nodeInterface, nodeField } = nodeDefinitions(
   (globalId, info): Object => { // return the correct object, given the global id
-    const { type } = fromGlobalId(globalId);
+    const { id, type } = fromGlobalId(globalId);
     const resolver = RelayRegistry.getResolverForNodeType(type);
     if (!resolver) {
       throw new Error(`Undefined node resolver for node type ${type}`);
     }
-    return resolver(null, null, info);
+    return resolver(null, { id }, info);
   },
   (obj: NodeObject): GraphQLObjectType => { // given an object, resolve the correct type
     if (!obj.__relayType) {

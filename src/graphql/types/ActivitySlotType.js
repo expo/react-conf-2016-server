@@ -12,6 +12,7 @@ import { globalIdField } from 'graphql-relay';
 
 import { nodeInterface } from 'RelayNode';
 import RelayRegistry from 'RelayRegistry';
+import * as ScheduleResolvers from 'ScheduleResolvers';
 import ScheduleSlotInterface, { fields as ScheduleSlotInterfaceFields } from 'ScheduleSlotInterface';
 
 const ActivitySlotType = new GraphQLObjectType({
@@ -29,4 +30,5 @@ const ActivitySlotType = new GraphQLObjectType({
   interfaces: () => [ScheduleSlotInterface, nodeInterface],
 });
 
+RelayRegistry.registerResolverForType(ActivitySlotType, ScheduleResolvers.slotNodeResolver);
 export default RelayRegistry.registerNodeType(ActivitySlotType);

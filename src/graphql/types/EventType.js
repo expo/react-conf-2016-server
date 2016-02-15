@@ -10,6 +10,7 @@ import {
 
 import { globalIdField } from 'graphql-relay';
 
+import * as EventResolvers from 'EventResolvers';
 import { nodeInterface } from 'RelayNode';
 import RelayRegistry from 'RelayRegistry';
 import * as Scalars from 'ScalarTypes';
@@ -28,4 +29,5 @@ const EventType = new GraphQLObjectType({
   interfaces: () => [nodeInterface],
 });
 
+RelayRegistry.registerResolverForType(EventType, EventResolvers.eventNodeResolver);
 export default RelayRegistry.registerNodeType(EventType);

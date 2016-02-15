@@ -47,7 +47,7 @@ export const ViewerType = new GraphQLObjectType({
     schedule: { //TODO @skevy make this a connection? Not sure honestly...
       type: new GraphQLList(ScheduleType),
       description: `Schedule of the current event`,
-      resolve: ScheduleResolvers.schedulesResolver,
+      resolve: ScheduleResolvers.schedulesForEventResolver,
     },
 
     allSpeakers: createConnection({

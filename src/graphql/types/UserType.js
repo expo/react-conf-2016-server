@@ -11,6 +11,7 @@ import { globalIdField } from 'graphql-relay';
 
 import { nodeInterface } from 'RelayNode';
 import RelayRegistry from 'RelayRegistry';
+import * as UserResolvers from 'UserResolvers';
 
 const UserType = new GraphQLObjectType({
   name: 'User',
@@ -23,4 +24,5 @@ const UserType = new GraphQLObjectType({
   interfaces: () => [nodeInterface],
 });
 
+RelayRegistry.registerNodeType(UserType, UserResolvers.userNodeResolver);
 export default RelayRegistry.registerNodeType(UserType);

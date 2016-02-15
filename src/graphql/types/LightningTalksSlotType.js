@@ -1,5 +1,6 @@
 /**
  * @providesModule LightningTalksSlotType
+ * @flow
  */
 
 import {
@@ -9,10 +10,11 @@ import {
 
 import { globalIdField } from 'graphql-relay';
 
+import LightningTalkType from 'LightningTalkType';
 import { nodeInterface } from 'RelayNode';
 import RelayRegistry from 'RelayRegistry';
 import ScheduleSlotInterface, { fields as ScheduleSlotInterfaceFields } from 'ScheduleSlotInterface';
-import LightningTalkType from 'LightningTalkType';
+import * as ScheduleResolvers from 'ScheduleResolvers';
 
 const LightningTalksSlotType = new GraphQLObjectType({
   name: 'LightningTalksSlot',
@@ -30,4 +32,5 @@ const LightningTalksSlotType = new GraphQLObjectType({
   interfaces: () => [ScheduleSlotInterface, nodeInterface],
 });
 
+RelayRegistry.registerResolverForType(LightningTalksSlotType, ScheduleResolvers.slotNodeResolver);
 export default RelayRegistry.registerNodeType(LightningTalksSlotType);

@@ -43,7 +43,12 @@ export default RelayRegistry;
 function _wrapResolver(typeName: string, resolver: Function): Function {
   return (...args) => {
     let resolved = resolver(...args);
-    if (resolved) {
+    if (resolved && typeof resolved.then === 'function') {
+      return resolved.then(result => {
+        Object.assign(result, { __relayType: typeName });
+        return result;
+      });
+    } else if (resolved) {
       Object.assign(resolved, { __relayType: typeName });
     }
     return resolved;

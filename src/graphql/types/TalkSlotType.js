@@ -8,10 +8,11 @@ import {
 
 import { globalIdField } from 'graphql-relay';
 
+import FullLengthTalkType from 'FullLengthTalkType';
 import { nodeInterface } from 'RelayNode';
 import RelayRegistry from 'RelayRegistry';
+import * as ScheduleResolvers from 'ScheduleResolvers';
 import ScheduleSlotInterface, { fields as ScheduleSlotInterfaceFields } from 'ScheduleSlotInterface';
-import FullLengthTalkType from 'FullLengthTalkType';
 
 const TalkSlotType = new GraphQLObjectType({
   name: 'TalkSlot',
@@ -30,4 +31,5 @@ const TalkSlotType = new GraphQLObjectType({
   interfaces: () => [ScheduleSlotInterface, nodeInterface],
 });
 
+RelayRegistry.registerResolverForType(TalkSlotType, ScheduleResolvers.slotNodeResolver);
 export default RelayRegistry.registerNodeType(TalkSlotType);

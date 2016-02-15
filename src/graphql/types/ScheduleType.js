@@ -23,11 +23,12 @@ const ScheduleType = new GraphQLObjectType({
     date: { type: CustomGraphQLDateType },
     slots: createConnection({
       type: ScheduleSlotType,
-      resolver: ScheduleResolvers.scheduleSlotResolver,
+      resolver: ScheduleResolvers.slotsForScheduleResolver,
     }),
   }),
 
   interfaces: () => [nodeInterface],
 });
 
+RelayRegistry.registerResolverForType(ScheduleType, ScheduleResolvers.scheduleNodeResolver);
 export default RelayRegistry.registerNodeType(ScheduleType);

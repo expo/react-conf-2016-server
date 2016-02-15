@@ -5,6 +5,8 @@
 
 import type { GraphQLResolveInfo } from 'graphql';
 
+import createNodeResolverWithLoader from 'createNodeResolverWithLoader';
+
 export const meResolver = async (
   viewer: Object,
   args: { [key: string]: mixed },
@@ -15,3 +17,5 @@ export const meResolver = async (
     id: 1,
   };
 };
+
+export const userNodeResolver = createNodeResolverWithLoader('usersById');

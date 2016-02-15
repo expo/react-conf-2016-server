@@ -4,10 +4,12 @@
  */
 
 import type { GraphQLResolveInfo } from 'graphql';
+
+import createNodeResolverWithLoader from 'createNodeResolverWithLoader';
 import ScheduleModel from 'ScheduleModel';
 import ScheduleSlotModel from 'ScheduleSlotModel';
 
-export const schedulesResolver = async (
+export const schedulesForEventResolver = async (
   viewer: Object,
   args: { [key: string]: mixed },
   info: GraphQLResolveInfo
@@ -17,7 +19,7 @@ export const schedulesResolver = async (
   return schedules;
 };
 
-export const scheduleSlotResolver = async (
+export const slotsForScheduleResolver = async (
   schedule: Object,
   args: { [key: string]: mixed },
   info: GraphQLResolveInfo
@@ -29,3 +31,7 @@ export const scheduleSlotResolver = async (
 
   return slots;
 };
+
+export const scheduleNodeResolver = createNodeResolverWithLoader('schedulesById');
+export const slotNodeResolver = createNodeResolverWithLoader('scheduleSlotsById');
+export const talkNodeResolver = createNodeResolverWithLoader('talksById');

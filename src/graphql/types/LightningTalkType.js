@@ -12,6 +12,7 @@ import { globalIdField } from 'graphql-relay';
 
 import { nodeInterface } from 'RelayNode';
 import RelayRegistry from 'RelayRegistry';
+import * as ScheduleResolvers from 'ScheduleResolvers';
 import * as SpeakerResolvers from 'SpeakerResolvers';
 import SpeakerType from 'SpeakerType';
 
@@ -35,4 +36,5 @@ const LightningTalkType = new GraphQLObjectType({
   interfaces: () => [nodeInterface],
 });
 
+RelayRegistry.registerResolverForType(LightningTalkType, ScheduleResolvers.talkNodeResolver);
 export default RelayRegistry.registerNodeType(LightningTalkType);

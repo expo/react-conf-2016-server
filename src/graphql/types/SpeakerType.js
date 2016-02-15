@@ -35,4 +35,5 @@ const SpeakerType = new GraphQLObjectType({
   interfaces: () => [nodeInterface],
 });
 
+RelayRegistry.registerResolverForType(SpeakerType, SpeakerResolvers.speakerNodeResolver);
 export default RelayRegistry.registerNodeType(SpeakerType);
