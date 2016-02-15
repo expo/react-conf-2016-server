@@ -1,0 +1,12 @@
+rethink:
+  image: rethinkdb
+  ports:
+    - 8080:8080
+    - 28015:28015
+    - 29015:29015
+
+rethink_data:
+  image: cogniteev/echo
+  command: echo 'Data Container for Rethinkdb'
+  volumes:
+    - /data
