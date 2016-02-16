@@ -9,7 +9,9 @@ import {
 import RootQuery from 'RootQuery';
 // import Mutations from 'Mutations';
 
-export default new GraphQLSchema({
+export const Schema = new GraphQLSchema({
   query: RootQuery,
   // mutation: Mutations
 });
+
+export default Schema;

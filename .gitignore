@@ -32,3 +32,5 @@ node_modules
 
 # Ignore built css files
 *.min.css
+
+lib/
