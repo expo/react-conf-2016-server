@@ -43,4 +43,4 @@ export const talksForSpeakerResolver = async (
   return talks;
 };
 
-export const speakerNodeResolver = createNodeResolverWithLoader('speakerById');
+export const speakerNodeResolver = createNodeResolverWithLoader('speakersById');
