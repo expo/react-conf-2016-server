@@ -44,7 +44,12 @@ gulp.task('graphql', ['build'], () => {
       graphql: false,
     }))
     .on('error', console.log)
-    .pipe(gulp.dest('./lib'));
+    .pipe(gulp.dest('./lib')
+    .on('end', () => {
+      setTimeout(() => {
+        process.exit(0);
+      }, 500);
+    }));
 });
 
-gulp.task('default', ['clean', 'build']);
+gulp.task('default', ['clean', 'build', 'graphql']);
